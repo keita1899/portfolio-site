@@ -1,6 +1,7 @@
 'use client'
 
 import { SignIn } from '@clerk/nextjs'
+import Link from 'next/link'
 
 export default function SignInPage() {
   return (
@@ -34,12 +35,12 @@ export default function SignInPage() {
         </div>
 
         <div className="mt-8 text-center">
-          <a 
+          <Link
             href="/"
             className="text-gray-600 hover:text-gray-500 dark:text-gray-400 dark:hover:text-gray-300"
           >
             ← サイトトップに戻る
-          </a>
+          </Link>
         </div>
       </div>
     </div>

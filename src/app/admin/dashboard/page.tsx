@@ -1,11 +1,6 @@
-import { auth } from '@clerk/nextjs/server'
-import { clerkClient } from '@clerk/nextjs/server'
 import Link from 'next/link'
 
 export default async function Dashboard() {
-  const { userId } = await auth()
-  const client = await clerkClient()
-  const user = userId ? await client.users.getUser(userId) : null
 
   // サンプルのポートフォリオデータ（実際はデータベースから取得）
   const portfolios = [
