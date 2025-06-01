@@ -3,6 +3,7 @@
 import { useParams } from 'next/navigation'
 import { usePortfolioEdit } from '@/hooks/usePortfolioEdit'
 import { PortfolioForm } from '@/components/PortfolioForm'
+import Link from 'next/link'
 
 export default function EditPortfolioPage() {
   const params = useParams()
@@ -39,12 +40,12 @@ export default function EditPortfolioPage() {
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
         <div className="text-center">
           <p className="text-red-600 dark:text-red-400">{error}</p>
-          <a
+          <Link
             href="/admin/dashboard"
             className="mt-4 inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
           >
             ダッシュボードに戻る
-          </a>
+          </Link>
         </div>
       </div>
     )
