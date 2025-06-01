@@ -6,7 +6,6 @@ import { FilterType } from './StatsGrid'
 type PortfolioCardListProps = {
   portfolios: PortfolioWithRelations[]
   currentFilter: FilterType
-  onClearFilter: () => void
 }
 
 export const PortfolioCardList = ({

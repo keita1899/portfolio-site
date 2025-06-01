@@ -74,10 +74,6 @@ export default function Dashboard() {
     setCurrentFilter(filter)
   }
 
-  const handleClearFilter = () => {
-    setCurrentFilter('all')
-  }
-
   if (loading || !isLoaded) {
     return (
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
@@ -145,7 +141,6 @@ export default function Dashboard() {
             <PortfolioCardList
               portfolios={portfolios}
               currentFilter={currentFilter}
-              onClearFilter={handleClearFilter}
             />
           )}
         </div>
