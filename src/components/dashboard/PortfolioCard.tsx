@@ -28,12 +28,12 @@ export const PortfolioCard = ({ portfolio }: PortfolioCardProps) => {
           </h3>
           <span
             className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-              portfolio.published !== false
+              portfolio.published === true
                 ? 'bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-200'
                 : 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200'
             }`}
           >
-            {portfolio.published !== false ? '公開中' : '非公開'}
+            {portfolio.published === true ? '公開中' : '非公開'}
           </span>
         </div>
 

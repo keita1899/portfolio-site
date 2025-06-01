@@ -15,7 +15,7 @@ export const PortfolioCardList = ({
   // フィルタに基づいてポートフォリオをフィルタリング
   const filteredPortfolios = portfolios.filter((portfolio) => {
     if (currentFilter === 'all') return true
-    if (currentFilter === 'published') return portfolio.published !== false
+    if (currentFilter === 'published') return portfolio.published === true
     if (currentFilter === 'unpublished') return portfolio.published === false
     return true
   })
