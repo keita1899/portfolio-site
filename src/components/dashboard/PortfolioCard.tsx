@@ -1,4 +1,5 @@
 import { PortfolioWithRelations } from '@/types/portfolio'
+import Link from 'next/link'
 
 type PortfolioCardProps = {
   portfolio: PortfolioWithRelations
@@ -101,13 +102,13 @@ export const PortfolioCard = ({ portfolio }: PortfolioCardProps) => {
                 </div>
               )}
           </div>
-          <div className="flex space-x-2">
-            <button className="text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300 text-sm font-medium">
+          <div className="flex justify-end">
+            <Link
+              href={`/admin/dashboard/portfolios/${portfolio.id}/edit`}
+              className="text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300 text-sm font-medium"
+            >
               編集
-            </button>
-            <button className="text-red-600 hover:text-red-500 dark:text-red-400 dark:hover:text-red-300 text-sm font-medium">
-              削除
-            </button>
+            </Link>
           </div>
         </div>
       </div>
