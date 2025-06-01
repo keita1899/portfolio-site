@@ -1,15 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/utils/supabase/server'
-import { auth } from '@clerk/nextjs/server'
+import { checkAuth } from '@/utils/auth'
 import { CreatePortfolioRequest } from '@/types/portfolio'
 
 export async function GET() {
   try {
     // 認証チェック
-    const { userId } = await auth()
-    if (!userId) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-    }
+    const { error: authError } = await checkAuth()
+    if (authError) return authError
 
     const supabase = await createClient()
 
@@ -45,10 +43,8 @@ export async function GET() {
 }
 
 export async function POST(request: NextRequest) {
-  const { userId } = await auth()
-  if (!userId) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-  }
+  const { error: authError } = await checkAuth()
+  if (authError) return authError
 
   const supabase = await createClient()
   const body: CreatePortfolioRequest = await request.json()
@@ -151,21 +147,19 @@ export async function POST(request: NextRequest) {
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: { id: string } },
 ) {
   try {
     // 認証チェック
-    const { userId } = await auth()
-    if (!userId) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-    }
+    const { error: authError } = await checkAuth()
+    if (authError) return authError
 
     const portfolioId = params.id
 
     if (!portfolioId) {
       return NextResponse.json(
         { error: 'Portfolio ID is required' },
-        { status: 400 }
+        { status: 400 },
       )
     }
 
@@ -181,7 +175,7 @@ export async function DELETE(
     if (fetchError || !portfolio) {
       return NextResponse.json(
         { error: 'Portfolio not found' },
-        { status: 404 }
+        { status: 404 },
       )
     }
 
@@ -235,17 +229,17 @@ export async function DELETE(
     console.log(`Portfolio deleted successfully: ${portfolioId}`)
 
     return NextResponse.json(
-      { 
+      {
         message: 'Portfolio deleted successfully',
-        deletedPortfolio: portfolio
+        deletedPortfolio: portfolio,
       },
-      { status: 200 }
+      { status: 200 },
     )
   } catch (error) {
     console.error('API Error:', error)
     return NextResponse.json(
       { error: (error as Error).message || 'Internal server error' },
-      { status: 500 }
+      { status: 500 },
     )
   }
 }

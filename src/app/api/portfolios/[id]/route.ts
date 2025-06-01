@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/utils/supabase/server'
-import { auth } from '@clerk/nextjs/server'
+import { checkAuth } from '@/utils/auth'
 
 export async function DELETE(
   request: NextRequest,
@@ -8,10 +8,8 @@ export async function DELETE(
 ) {
   try {
     // 認証チェック
-    const { userId } = await auth()
-    if (!userId) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-    }
+    const { error: authError } = await checkAuth()
+    if (authError) return authError
 
     const portfolioId = params.id
 
@@ -109,10 +107,8 @@ export async function GET(
 ) {
   try {
     // 認証チェック
-    const { userId } = await auth()
-    if (!userId) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-    }
+    const { error: authError } = await checkAuth()
+    if (authError) return authError
 
     const portfolioId = params.id
     const supabase = await createClient()
