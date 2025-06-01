@@ -16,9 +16,21 @@ export const DeleteConfirmDialog = ({
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white dark:bg-gray-800 rounded-lg p-6 max-w-md w-full mx-4">
-        <h3 className="text-lg font-medium text-red-600 dark:text-red-400 mb-4">
+    <div
+      className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
+      onClick={onClose}
+    >
+      <div
+        className="bg-white dark:bg-gray-800 rounded-lg p-6 max-w-md w-full mx-4"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="dialog-title"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <h3
+          id="dialog-title"
+          className="text-lg font-medium text-red-600 dark:text-red-400 mb-4"
+        >
           ポートフォリオの削除
         </h3>
         <p className="text-gray-600 dark:text-gray-400 mb-6">
