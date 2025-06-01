@@ -4,14 +4,14 @@ import { checkAuth } from '@/utils/auth'
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } },
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
     // 認証チェック
     const { error: authError } = await checkAuth()
     if (authError) return authError
 
-    const portfolioId = params.id
+    const { id: portfolioId } = await params
 
     if (!portfolioId) {
       return NextResponse.json(
@@ -103,14 +103,14 @@ export async function DELETE(
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } },
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
     // 認証チェック
     const { error: authError } = await checkAuth()
     if (authError) return authError
 
-    const portfolioId = params.id
+    const { id: portfolioId } = await params
     const supabase = await createClient()
 
     // ポートフォリオと関連データを取得
