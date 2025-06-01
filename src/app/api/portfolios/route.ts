@@ -2,6 +2,48 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/utils/supabase/server'
 import { auth } from '@clerk/nextjs/server'
 import { CreatePortfolioRequest } from '@/types/portfolio'
+
+export async function GET() {
+  try {
+    // 認証チェック
+    const { userId } = await auth()
+    if (!userId) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
+
+    const supabase = await createClient()
+
+    // ポートフォリオ一覧を取得（関連データも含む）
+    const { data: portfolios, error } = await supabase
+      .from('portfolios')
+      .select(
+        `
+        *,
+        features (id, name),
+        pages (id, name),
+        tech_stack (id, name, version)
+      `,
+      )
+      .order('created_at', { ascending: false })
+
+    if (error) {
+      console.error('Portfolio fetch error:', error)
+      return NextResponse.json(
+        { error: 'Failed to fetch portfolios' },
+        { status: 500 },
+      )
+    }
+
+    return NextResponse.json({ portfolios }, { status: 200 })
+  } catch (error) {
+    console.error('API Error:', error)
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 },
+    )
+  }
+}
+
 export async function POST(request: NextRequest) {
   const { userId } = await auth()
   if (!userId) {
