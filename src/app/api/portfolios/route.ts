@@ -97,9 +97,7 @@ export async function POST(request: NextRequest) {
       await insertRelatedData(
         'features',
         features,
-        async () => {
-          await supabase.from('portfolios').delete().eq('id', portfolioId)
-        },
+        async () => await rollback(portfolioId),
         'Failed to create features',
       )
     }
@@ -113,13 +111,7 @@ export async function POST(request: NextRequest) {
       await insertRelatedData(
         'pages',
         pages,
-        async () => {
-          await supabase
-            .from('features')
-            .delete()
-            .eq('portfolio_id', portfolioId)
-          await supabase.from('portfolios').delete().eq('id', portfolioId)
-        },
+        async () => await rollback(portfolioId),
         'Failed to create pages',
       )
     }
