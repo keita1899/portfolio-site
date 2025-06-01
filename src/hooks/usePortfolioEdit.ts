@@ -105,7 +105,8 @@ export const usePortfolioEdit = (portfolioId: string) => {
     }
 
     fetchPortfolio()
-  }, [portfolioId, form])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [portfolioId])
 
   const onSubmit = async (data: PortfolioFormData) => {
     // 編集機能は未実装
