@@ -1,15 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/utils/supabase/server'
-import { auth } from '@clerk/nextjs/server'
+import { checkAuth } from '@/utils/auth'
 import { CreatePortfolioRequest } from '@/types/portfolio'
 
 export async function GET() {
   try {
     // 認証チェック
-    const { userId } = await auth()
-    if (!userId) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-    }
+    const { error: authError } = await checkAuth()
+    if (authError) return authError
 
     const supabase = await createClient()
 
@@ -45,10 +43,8 @@ export async function GET() {
 }
 
 export async function POST(request: NextRequest) {
-  const { userId } = await auth()
-  if (!userId) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-  }
+  const { error: authError } = await checkAuth()
+  if (authError) return authError
 
   const supabase = await createClient()
   const body: CreatePortfolioRequest = await request.json()

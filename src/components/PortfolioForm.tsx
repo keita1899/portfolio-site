@@ -1,7 +1,15 @@
 import Link from 'next/link'
 import { UsePortfolioFormReturn } from '@/hooks/usePortfolioForm'
+import { DeleteConfirmDialog } from '@/components/dashboard/DeleteConfirmDialog'
 
-type PortfolioFormProps = UsePortfolioFormReturn
+type PortfolioFormProps = UsePortfolioFormReturn & {
+  isEditMode?: boolean
+  onDelete?: () => void
+  deleting?: boolean
+  showDeleteDialog?: boolean
+  portfolioName?: string
+  setShowDeleteDialog?: (show: boolean) => void
+}
 
 export const PortfolioForm = ({
   form,
@@ -9,6 +17,12 @@ export const PortfolioForm = ({
   pageFields,
   techStackFields,
   onSubmit,
+  isEditMode = false,
+  onDelete,
+  deleting = false,
+  showDeleteDialog = false,
+  portfolioName = '',
+  setShowDeleteDialog,
 }: PortfolioFormProps) => {
   const {
     register,
@@ -27,9 +41,20 @@ export const PortfolioForm = ({
           >
             ← ダッシュボードに戻る
           </Link>
-          <h1 className="mt-4 text-2xl font-bold text-gray-900 dark:text-white">
-            ポートフォリオを追加
-          </h1>
+          <div className="mt-4 flex items-center justify-between">
+            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
+              {isEditMode ? 'ポートフォリオを編集' : 'ポートフォリオを追加'}
+            </h1>
+            {isEditMode && onDelete && setShowDeleteDialog && (
+              <button
+                type="button"
+                onClick={() => setShowDeleteDialog(true)}
+                className="px-4 py-2 border border-red-300 dark:border-red-600 rounded-md shadow-sm text-sm font-medium text-red-700 dark:text-red-400 bg-red-50 dark:bg-red-900/20 hover:bg-red-100 dark:hover:bg-red-900/40"
+              >
+                削除
+              </button>
+            )}
+          </div>
         </div>
 
         {/* フォーム */}
@@ -346,7 +371,13 @@ export const PortfolioForm = ({
               disabled={isSubmitting}
               className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {isSubmitting ? '作成中...' : 'ポートフォリオを作成'}
+              {isSubmitting
+                ? isEditMode
+                  ? '更新中...'
+                  : '作成中...'
+                : isEditMode
+                ? 'ポートフォリオを更新'
+                : 'ポートフォリオを作成'}
             </button>
             <Link
               href="/admin/dashboard"
@@ -356,6 +387,17 @@ export const PortfolioForm = ({
             </Link>
           </div>
         </form>
+
+        {/* 削除確認ダイアログ */}
+        {isEditMode && onDelete && (
+          <DeleteConfirmDialog
+            isOpen={showDeleteDialog}
+            onClose={() => setShowDeleteDialog?.(false)}
+            onConfirm={onDelete}
+            portfolioName={portfolioName}
+            isDeleting={deleting}
+          />
+        )}
       </div>
     </div>
   )

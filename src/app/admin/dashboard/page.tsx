@@ -65,7 +65,7 @@ export default function Dashboard() {
   }, [userId, isLoaded, isSignedIn])
 
   // 統計情報を計算
-  const publishedCount = portfolios.filter((p) => p.published !== false).length
+  const publishedCount = portfolios.filter((p) => p.published === true).length
   const unpublishedCount = portfolios.filter(
     (p) => p.published === false,
   ).length
