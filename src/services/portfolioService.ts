@@ -5,6 +5,15 @@ import {
 } from '@/types/portfolio'
 
 export class PortfolioService {
+
+  // 管理画面用：全てのポートフォリオを取得（認証必要）
+  static async getAdminPortfolios(): Promise<{
+    portfolios: PortfolioWithRelations[]
+  }> {
+    const response = await axios.get('/api/admin/portfolios')
+    return response.data
+  }
+
   static async getPortfolio(
     id: string,
   ): Promise<{ portfolio: PortfolioWithRelations }> {

@@ -1,11 +1,11 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { createClient } from '@/utils/supabase/client'
+import { PortfolioService } from '@/services/portfolioService'
 import { PortfolioWithRelations } from '@/types/portfolio'
 import { useAuth } from '@clerk/nextjs'
 import { StatsGrid, FilterType } from '@/components/dashboard/StatsGrid'
-import { PortfolioCardList } from '@/components/dashboard/PortfolioCardList'
+import { PortfolioCardList } from '@/components/ui/PortfolioCardList'
 import Link from 'next/link'
 
 export default function Dashboard() {
@@ -31,28 +31,10 @@ export default function Dashboard() {
       }
 
       try {
-        const supabase = createClient()
-
-        // ポートフォリオ一覧を取得（関連データも含む）
-        const { data, error: fetchError } = await supabase
-          .from('portfolios')
-          .select(
-            `
-            *,
-            features (id, name),
-            pages (id, name),
-            tech_stack (id, name, version)
-          `,
-          )
-          .order('created_at', { ascending: false })
-
-        if (fetchError) {
-          console.error('Portfolio fetch error:', fetchError)
-          setError('ポートフォリオの取得に失敗しました')
-        } else {
-          setPortfolios(data || [])
-          setError(null) // エラーをクリア
-        }
+        // API経由でポートフォリオ一覧を取得
+        const { portfolios: data } = await PortfolioService.getAdminPortfolios()
+        setPortfolios(data || [])
+        setError(null) // エラーをクリア
       } catch (err) {
         console.error('Failed to fetch portfolios:', err)
         setError('ポートフォリオの取得に失敗しました')
@@ -69,6 +51,14 @@ export default function Dashboard() {
   const unpublishedCount = portfolios.filter(
     (p) => p.published === false,
   ).length
+
+  // フィルタに基づいてポートフォリオをフィルタリング
+  const filteredPortfolios = portfolios.filter((portfolio) => {
+    if (currentFilter === 'all') return true
+    if (currentFilter === 'published') return portfolio.published === true
+    if (currentFilter === 'unpublished') return portfolio.published === false
+    return true
+  })
 
   const handleFilterChange = (filter: FilterType) => {
     setCurrentFilter(filter)
@@ -136,12 +126,54 @@ export default function Dashboard() {
             />
           )}
 
+          {/* フィルタ結果表示 */}
+          {!error && currentFilter !== 'all' && (
+            <div className="mb-4">
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                {currentFilter === 'published' &&
+                  `公開中のポートフォリオ (${filteredPortfolios.length}件)`}
+                {currentFilter === 'unpublished' &&
+                  `非公開のポートフォリオ (${filteredPortfolios.length}件)`}
+              </p>
+            </div>
+          )}
+
           {/* ポートフォリオ一覧 */}
           {!error && (
-            <PortfolioCardList
-              portfolios={portfolios}
-              currentFilter={currentFilter}
-            />
+            <>
+              {filteredPortfolios.length === 0 && portfolios.length > 0 ? (
+                <div className="text-center py-12">
+                  <svg
+                    className="mx-auto h-12 w-12 text-gray-400 dark:text-gray-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                    />
+                  </svg>
+                  <h3 className="mt-2 text-sm font-medium text-gray-900 dark:text-white">
+                    該当するポートフォリオがありません
+                  </h3>
+                  <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+                    フィルタ条件を変更してみてください。
+                  </p>
+                </div>
+              ) : (
+                <PortfolioCardList
+                  portfolios={filteredPortfolios}
+                  showStatus={true}
+                  showEditLink={true}
+                  emptyStateTitle="ポートフォリオがありません"
+                  emptyStateDescription="最初のポートフォリオを追加して始めましょう。"
+                  showAddButton={true}
+                />
+              )}
+            </>
           )}
         </div>
       </main>
