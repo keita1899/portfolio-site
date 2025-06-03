@@ -5,13 +5,10 @@ import { CreatePortfolioRequest } from '@/types/portfolio'
 
 export async function GET() {
   try {
-    // 認証チェック
-    const { error: authError } = await checkAuth()
-    if (authError) return authError
-
+    // GETリクエストでは認証チェックを行わない（公開ポートフォリオのみ取得）
     const supabase = await createClient()
 
-    // ポートフォリオ一覧を取得（関連データも含む）
+    // 公開されているポートフォリオのみを取得（関連データも含む）
     const { data: portfolios, error } = await supabase
       .from('portfolios')
       .select(
@@ -22,6 +19,7 @@ export async function GET() {
         tech_stack (id, name, version)
       `,
       )
+      .eq('published', true) // 公開されているもののみ
       .order('created_at', { ascending: false })
 
     if (error) {
@@ -43,6 +41,7 @@ export async function GET() {
 }
 
 export async function POST(request: NextRequest) {
+  // POSTリクエストでは認証が必要
   const { error: authError } = await checkAuth()
   if (authError) return authError
 
