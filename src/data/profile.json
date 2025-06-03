@@ -1,0 +1,414 @@
+{
+  "profile": {
+    "name": "あなたの名前",
+    "title": "Web Developer / Software Engineer",
+    "description": "フルスタックWeb開発者として、モダンな技術を用いたWebアプリケーションの開発に取り組んでいます。ユーザーエクスペリエンスを重視し、保守性の高いコードを書くことを心がけています。",
+    "image": "/images/profile.jpg",
+    "location": "東京, 日本",
+    "email": "your.email@example.com",
+    "github": "https://github.com/yourusername",
+    "x": "https://x.com/yourusername"
+  },
+  "skills": {
+    "frontend": [
+      {
+        "name": "HTML",
+        "imageUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
+        "learnings": [
+          "セマンティックHTMLの重要性と実践",
+          "アクセシビリティを考慮したマークアップ",
+          "SEOに配慮したHTML構造の設計"
+        ],
+        "capabilities": [
+          "セマンティックなHTML文書の作成",
+          "アクセシブルなフォームの実装",
+          "SEO最適化されたページ構造の設計"
+        ]
+      },
+      {
+        "name": "CSS",
+        "imageUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
+        "learnings": [
+          "FlexboxとGrid Layoutによる現代的なレイアウト手法",
+          "レスポンシブデザインの実装技術",
+          "CSSアニメーションとトランジション"
+        ],
+        "capabilities": [
+          "レスポンシブデザインの実装",
+          "複雑なレイアウトの構築",
+          "CSSアニメーションの実装"
+        ]
+      },
+      {
+        "name": "JavaScript",
+        "imageUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+        "learnings": [
+          "ES6+の現代的なJavaScript構文",
+          "非同期プログラミング（Promise、async/await）",
+          "DOM操作とイベントハンドリング"
+        ],
+        "capabilities": [
+          "インタラクティブなWebアプリケーションの開発",
+          "非同期処理の実装",
+          "APIとの連携処理"
+        ]
+      },
+      {
+        "name": "TypeScript",
+        "imageUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+        "learnings": [
+          "型安全なコードの書き方",
+          "ジェネリクスとユーティリティ型の活用",
+          "インターフェースと型定義の設計"
+        ],
+        "capabilities": [
+          "型安全なReact/Next.jsアプリケーションの開発",
+          "複雑な型定義の作成",
+          "型を活用したコードの保守性向上"
+        ]
+      },
+      {
+        "name": "React",
+        "imageUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+        "learnings": [
+          "関数コンポーネントとHooksの活用",
+          "状態管理とコンポーネント設計",
+          "パフォーマンス最適化技術"
+        ],
+        "capabilities": [
+          "再利用可能なコンポーネントの設計・実装",
+          "複雑な状態管理の実装",
+          "効率的なReactアプリケーションの構築"
+        ]
+      },
+      {
+        "name": "Next.js",
+        "imageUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+        "learnings": [
+          "SSR/SSGによるパフォーマンス最適化",
+          "App Routerを使用した現代的なルーティング",
+          "APIルートでのバックエンド機能実装"
+        ],
+        "capabilities": [
+          "高性能なWebアプリケーションの構築",
+          "SEO最適化されたサイトの開発",
+          "フルスタックアプリケーションの実装"
+        ]
+      },
+      {
+        "name": "Tailwind CSS",
+        "imageUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg",
+        "learnings": [
+          "ユーティリティクラスによる効率的なスタイリング",
+          "レスポンシブデザインの実装",
+          "ダークモード対応の実装"
+        ],
+        "capabilities": [
+          "迅速なUI開発",
+          "一貫性のあるデザインシステムの構築",
+          "カスタムデザインの効率的な実装"
+        ]
+      },
+      {
+        "name": "Jest",
+        "imageUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jest/jest-plain.svg",
+        "learnings": [
+          "ユニットテストの書き方",
+          "モックとスパイの活用",
+          "テストカバレッジの重要性"
+        ],
+        "capabilities": [
+          "基本的なユニットテストの実装",
+          "React Componentのテスト",
+          "テスト駆動開発の実践"
+        ]
+      }
+    ],
+    "backend": [
+      {
+        "name": "Ruby",
+        "imageUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ruby/ruby-original.svg",
+        "learnings": [
+          "オブジェクト指向プログラミングの原則",
+          "Rubyの文法と慣用的な書き方",
+          "gemを使った機能拡張"
+        ],
+        "capabilities": [
+          "オブジェクト指向設計の実装",
+          "効率的なRubyコードの記述",
+          "外部ライブラリの活用"
+        ]
+      },
+      {
+        "name": "Ruby on Rails",
+        "imageUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rails/rails-original-wordmark.svg",
+        "learnings": [
+          "MVCアーキテクチャの理解と実践",
+          "Active Recordによるデータベース操作",
+          "RESTfulなAPIの設計と実装"
+        ],
+        "capabilities": [
+          "Webアプリケーションの開発",
+          "データベース設計と実装",
+          "RESTful APIの構築"
+        ]
+      },
+      {
+        "name": "RSpec",
+        "imageUrl": "https://rspec.info/images/logo_ogp.png",
+        "learnings": [
+          "BDDスタイルのテストの書き方",
+          "モックとスタブの使い方",
+          "テストの構造化と整理"
+        ],
+        "capabilities": [
+          "Railsアプリケーションのテスト実装",
+          "テスト可能なコードの設計",
+          "テストスイートの保守"
+        ]
+      }
+    ],
+    "database": [
+      {
+        "name": "PostgreSQL",
+        "imageUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
+        "learnings": [
+          "SQL文の書き方とクエリ最適化",
+          "データベース設計の原則",
+          "インデックスとパフォーマンス最適化"
+        ],
+        "capabilities": [
+          "効率的なデータベース設計",
+          "複雑なSQLクエリの作成",
+          "データベースパフォーマンスの最適化"
+        ]
+      },
+      {
+        "name": "MySQL",
+        "imageUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
+        "learnings": [
+          "基本的なSQL操作",
+          "データベースの作成と管理",
+          "バックアップとリストア"
+        ],
+        "capabilities": [
+          "基本的なデータベース操作",
+          "シンプルなデータベース設計",
+          "データの管理と保守"
+        ]
+      },
+      {
+        "name": "Supabase",
+        "imageUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg",
+        "learnings": [
+          "リアルタイムデータベースの活用",
+          "認証システムの実装",
+          "Row Level Securityによるデータ保護"
+        ],
+        "capabilities": [
+          "リアルタイムアプリケーションの構築",
+          "認証機能の実装",
+          "セキュアなデータベース設計"
+        ]
+      }
+    ],
+    "tools": [
+      {
+        "name": "Git・GitHub",
+        "imageUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
+        "learnings": [
+          "ブランチ戦略とマージ戦略",
+          "プルリクエストベースの開発フロー",
+          "コンフリクト解決とコードレビュー"
+        ],
+        "capabilities": [
+          "効率的なバージョン管理",
+          "チーム開発での協業",
+          "コードの品質管理"
+        ]
+      },
+      {
+        "name": "Github Actions",
+        "imageUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
+        "learnings": [
+          "ワークフローの設定と実行",
+          "自動テストと自動デプロイ",
+          "セキュリティとベストプラクティス"
+        ],
+        "capabilities": [
+          "基本的なCI/CDパイプラインの構築",
+          "自動化されたテストの実行",
+          "デプロイメントの自動化"
+        ]
+      },
+      {
+        "name": "Docker",
+        "imageUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
+        "learnings": [
+          "コンテナの概念と基本操作",
+          "Dockerfileの作成とイメージビルド",
+          "docker-composeによる複数コンテナの管理"
+        ],
+        "capabilities": [
+          "アプリケーションのコンテナ化",
+          "開発環境の統一",
+          "基本的なコンテナオーケストレーション"
+        ]
+      },
+      {
+        "name": "AWS",
+        "imageUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg",
+        "learnings": [
+          "基本的なAWSサービスの理解",
+          "EC2、S3、RDSの使用方法",
+          "IAMによるセキュリティ管理"
+        ],
+        "capabilities": [
+          "基本的なクラウドインフラの構築",
+          "静的サイトのホスティング",
+          "クラウドリソースの管理"
+        ]
+      },
+      {
+        "name": "Vercel",
+        "imageUrl": "https://assets.vercel.com/image/upload/v1662130559/nextjs/Icon_light_background.png",
+        "learnings": [
+          "Next.jsアプリケーションの最適化デプロイ",
+          "継続的デプロイメントの設定",
+          "環境変数とドメイン管理"
+        ],
+        "capabilities": [
+          "Next.jsアプリケーションの効率的なデプロイ",
+          "プレビュー環境の活用",
+          "パフォーマンス最適化されたホスティング"
+        ]
+      }
+    ]
+  },
+  "career": [
+    {
+      "company": "株式会社テックイノベーション",
+      "position": "フルスタックエンジニア",
+      "startDate": "2023-04",
+      "description": "Webアプリケーションの設計・開発・運用を担当。React/Next.jsを用いたフロントエンド開発とNode.js/Railsを用いたバックエンド開発を行っています。",
+      "responsibilities": [
+        "新機能の要件定義・設計・実装",
+        "既存システムの保守・改善",
+        "コードレビューとチームメンバーのサポート",
+        "CI/CDパイプラインの構築・改善",
+        "データベース設計・最適化"
+      ],
+      "technologies": [
+        "React",
+        "Next.js",
+        "TypeScript",
+        "Ruby on Rails",
+        "PostgreSQL",
+        "AWS",
+        "Docker",
+        "Github Actions"
+      ],
+      "achievements": [
+        "新規Webアプリケーションの開発をリードし、3ヶ月でリリース",
+        "レガシーシステムのモダン化プロジェクトに参画し、パフォーマンスを40%改善",
+        "チーム開発効率化のためのCI/CDパイプライン構築"
+      ]
+    },
+    {
+      "company": "株式会社デジタルソリューションズ",
+      "position": "フロントエンドエンジニア",
+      "startDate": "2022-04",
+      "endDate": "2023-03",
+      "description": "Reactを中心としたSPAの開発を担当。ユーザビリティを重視したUI/UX設計と実装を行いました。",
+      "responsibilities": [
+        "React/TypeScriptを用いたSPA開発",
+        "UI/UXデザインからの実装",
+        "レスポンシブWebデザインの実装",
+        "パフォーマンス最適化",
+        "ユニットテスト・E2Eテストの実装"
+      ],
+      "technologies": [
+        "React",
+        "TypeScript",
+        "JavaScript",
+        "HTML/CSS",
+        "Jest",
+        "Cypress",
+        "Figma"
+      ],
+      "achievements": [
+        "ユーザー満足度を25%向上させるUI改善を実施",
+        "Webサイトの表示速度を50%改善",
+        "テストカバレッジ90%以上を達成"
+      ]
+    },
+    {
+      "company": "フリーランス",
+      "position": "Webデベロッパー",
+      "startDate": "2021-10",
+      "endDate": "2022-03",
+      "description": "中小企業向けのWebサイト制作・システム開発をフリーランスとして行いました。",
+      "responsibilities": [
+        "要件ヒアリング・提案",
+        "Webサイト・Webアプリケーションの設計・開発",
+        "保守・運用サポート",
+        "SEO対策・アクセス解析"
+      ],
+      "technologies": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "WordPress",
+        "PHP",
+        "MySQL"
+      ],
+      "achievements": [
+        "5社のWebサイトを制作・納品",
+        "クライアントのWeb集客を平均30%向上",
+        "すべてのプロジェクトで期限内納品を達成"
+      ]
+    }
+  ],
+  "certifications": [
+    {
+      "name": "AWS Certified Solutions Architect - Associate",
+      "issuer": "Amazon Web Services",
+      "date": "2023-06",
+      "credentialId": "AWS-ASA-12345"
+    },
+    {
+      "name": "情報処理技術者試験 応用情報技術者",
+      "issuer": "情報処理推進機構（IPA）",
+      "date": "2022-10",
+      "credentialId": "AP-2022-123456"
+    },
+    {
+      "name": "TOEIC Listening & Reading Test",
+      "issuer": "国際ビジネスコミュニケーション協会",
+      "date": "2023-03",
+      "score": "850点"
+    }
+  ],
+  "hobbies": [
+    {
+      "name": "プログラミング",
+      "description": "個人プロジェクトでの新技術の習得と実践",
+      "icon": "💻"
+    },
+    {
+      "name": "読書",
+      "description": "技術書やビジネス書、小説まで幅広く読書",
+      "icon": "📚"
+    },
+    {
+      "name": "写真撮影",
+      "description": "風景や街並みの撮影、写真編集",
+      "icon": "📸"
+    },
+    {
+      "name": "旅行",
+      "description": "国内外の文化や歴史に触れる旅行",
+      "icon": "✈️"
+    }
+  ]
+}
