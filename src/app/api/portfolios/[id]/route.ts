@@ -106,14 +106,10 @@ export async function GET(
   { params }: { params: Promise<{ id: string }> },
 ) {
   try {
-    // 認証チェック
-    const { error: authError } = await checkAuth()
-    if (authError) return authError
-
     const { id: portfolioId } = await params
     const supabase = await createClient()
 
-    // ポートフォリオと関連データを取得
+    // 公開されたポートフォリオのみを取得（認証不要）
     const { data: portfolio, error } = await supabase
       .from('portfolios')
       .select(
@@ -125,6 +121,7 @@ export async function GET(
       `,
       )
       .eq('id', portfolioId)
+      .eq('published', true) // 公開されたもののみ
       .single()
 
     if (error || !portfolio) {
