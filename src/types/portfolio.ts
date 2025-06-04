@@ -61,6 +61,16 @@ export type CreatePortfolioRequest = {
   }>
 }
 
+export type UpdatePortfolioRequest = {
+  portfolio: Omit<Portfolio, 'id' | 'created_at' | 'updated_at'>
+  features: string[]
+  pages: string[]
+  techStack: Array<{
+    name: string
+    version?: string
+  }>
+}
+
 // React Hook Form用の型定義
 export type PortfolioFormData = {
   name: string

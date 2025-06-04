@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { PortfolioWithRelations } from '@/types/portfolio'
-import { PortfolioCardList } from '@/components/ui/PortfolioCardList'
+import { PublicPortfolioCardList } from '@/components/portfolio/PublicPortfolioCardList'
 
 interface PortfolioSectionProps {
   portfolios: PortfolioWithRelations[]
@@ -27,12 +27,7 @@ export const PortfolioSection = ({ portfolios }: PortfolioSectionProps) => {
           {/* ポートフォリオ一覧 */}
           {displayedPortfolios.length > 0 ? (
             <>
-              <PortfolioCardList
-                portfolios={displayedPortfolios}
-                showStatus={false}
-                showEditLink={false}
-                showAddButton={false}
-              />
+              <PublicPortfolioCardList portfolios={displayedPortfolios} />
 
               {/* すべて見るリンク */}
               <div className="text-center">

@@ -1,35 +1,24 @@
 import Link from 'next/link'
 import { PortfolioWithRelations } from '@/types/portfolio'
-import { PortfolioCard } from './PortfolioCard'
+import { AdminPortfolioCard } from './AdminPortfolioCard'
 
-type PortfolioCardListProps = {
+type AdminPortfolioCardListProps = {
   portfolios: PortfolioWithRelations[]
-  showStatus?: boolean
-  showEditLink?: boolean
   emptyStateTitle?: string
   emptyStateDescription?: string
-  showAddButton?: boolean
 }
 
-export const PortfolioCardList = ({
+export const AdminPortfolioCardList = ({
   portfolios,
-  showStatus = true,
-  showEditLink = true,
   emptyStateTitle = 'ポートフォリオがありません',
   emptyStateDescription = '最初のポートフォリオを追加して始めましょう。',
-  showAddButton = true,
-}: PortfolioCardListProps) => {
+}: AdminPortfolioCardListProps) => {
   return (
     <div className="mb-8">
       {/* ポートフォリオ一覧 */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {portfolios.map((portfolio) => (
-          <PortfolioCard
-            key={portfolio.id}
-            portfolio={portfolio}
-            showStatus={showStatus}
-            showEditLink={showEditLink}
-          />
+          <AdminPortfolioCard key={portfolio.id} portfolio={portfolio} />
         ))}
       </div>
 
@@ -55,29 +44,27 @@ export const PortfolioCardList = ({
           <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
             {emptyStateDescription}
           </p>
-          {showAddButton && (
-            <div className="mt-6">
-              <Link
-                href="/admin/dashboard/portfolios/new"
-                className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          <div className="mt-6">
+            <Link
+              href="/admin/dashboard/portfolios/new"
+              className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            >
+              <svg
+                className="w-4 h-4 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
               >
-                <svg
-                  className="w-4 h-4 mr-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 4v16m8-8H4"
-                  />
-                </svg>
-                ポートフォリオを追加
-              </Link>
-            </div>
-          )}
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 4v16m8-8H4"
+                />
+              </svg>
+              ポートフォリオを追加
+            </Link>
+          </div>
         </div>
       )}
     </div>

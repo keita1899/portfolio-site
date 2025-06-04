@@ -1,6 +1,7 @@
 import axios from 'axios'
 import {
   CreatePortfolioRequest,
+  UpdatePortfolioRequest,
   PortfolioWithRelations,
 } from '@/types/portfolio'
 
@@ -30,6 +31,11 @@ export class PortfolioService {
 
   static async createPortfolio(data: CreatePortfolioRequest) {
     const response = await axios.post('/api/portfolios', data)
+    return response.data
+  }
+
+  static async updatePortfolio(id: string, data: UpdatePortfolioRequest) {
+    const response = await axios.put(`/api/portfolios/${id}`, data)
     return response.data
   }
 
