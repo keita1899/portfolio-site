@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useForm, useFieldArray } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
-import { PortfolioFormData } from '@/types/portfolio'
+import { PortfolioFormData, UpdatePortfolioRequest } from '@/types/portfolio'
 import { PortfolioService } from '@/services/portfolioService'
 
 export const usePortfolioEdit = (portfolioId: string) => {
@@ -109,9 +109,49 @@ export const usePortfolioEdit = (portfolioId: string) => {
   }, [portfolioId])
 
   const onSubmit = async (data: PortfolioFormData) => {
-    // 編集機能は未実装
-    alert('編集機能は未実装です')
-    console.log(data)
+    try {
+      form.clearErrors()
+
+      // データを整形
+      const requestData: UpdatePortfolioRequest = {
+        portfolio: {
+          name: data.name,
+          thumbnail: data.thumbnail || null,
+          demo_video: data.demo_video || null,
+          url: data.url || null,
+          github_url: data.github_url || null,
+          blog_url: data.blog_url || null,
+          image1: data.image1 || null,
+          image2: data.image2 || null,
+          image3: data.image3 || null,
+          image4: data.image4 || null,
+          description: data.description,
+          period: data.period,
+          highlights: data.highlights,
+          challenges: data.challenges,
+          published: data.published,
+        },
+        features: data.features
+          .filter((f) => f.name.trim() !== '')
+          .map((f) => f.name),
+        pages: data.pages
+          .filter((p) => p.name.trim() !== '')
+          .map((p) => p.name),
+        techStack: data.techStack
+          .filter((t) => t.name.trim() !== '')
+          .map((t) => ({
+            name: t.name,
+            version: t.version || undefined,
+          })),
+      }
+
+      await PortfolioService.updatePortfolio(portfolioId, requestData)
+      alert('ポートフォリオを更新しました')
+      router.push('/admin/dashboard')
+    } catch (error) {
+      console.error('Error updating portfolio:', error)
+      alert('ポートフォリオの更新に失敗しました')
+    }
   }
 
   const handleDelete = async () => {
