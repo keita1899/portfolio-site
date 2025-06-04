@@ -5,7 +5,7 @@ import { PortfolioService } from '@/services/portfolioService'
 import { PortfolioWithRelations } from '@/types/portfolio'
 import { useAuth } from '@clerk/nextjs'
 import { StatsGrid, FilterType } from '@/components/dashboard/StatsGrid'
-import { PortfolioCardList } from '@/components/ui/PortfolioCardList'
+import { AdminPortfolioCardList } from '@/components/dashboard/AdminPortfolioCardList'
 import Link from 'next/link'
 
 export default function Dashboard() {
@@ -164,13 +164,10 @@ export default function Dashboard() {
                   </p>
                 </div>
               ) : (
-                <PortfolioCardList
+                <AdminPortfolioCardList
                   portfolios={filteredPortfolios}
-                  showStatus={true}
-                  showEditLink={true}
                   emptyStateTitle="ポートフォリオがありません"
                   emptyStateDescription="最初のポートフォリオを追加して始めましょう。"
-                  showAddButton={true}
                 />
               )}
             </>

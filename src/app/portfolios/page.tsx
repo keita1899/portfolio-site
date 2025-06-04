@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { PortfolioWithRelations } from '@/types/portfolio'
 import { PortfolioService } from '@/services/portfolioService'
-import { PortfolioCardList } from '@/components/ui/PortfolioCardList'
+import { PublicPortfolioCardList } from '@/components/portfolio/PublicPortfolioCardList'
 
 export default function PortfoliosPage() {
   const [portfolios, setPortfolios] = useState<PortfolioWithRelations[]>([])
@@ -79,13 +79,10 @@ export default function PortfoliosPage() {
           </div>
 
           {/* ポートフォリオ一覧 */}
-          <PortfolioCardList
+          <PublicPortfolioCardList
             portfolios={portfolios}
-            showStatus={false}
-            showEditLink={false}
             emptyStateTitle="ポートフォリオはありません"
             emptyStateDescription="現在、公開可能なポートフォリオはありません。"
-            showAddButton={false}
           />
         </div>
       </div>
